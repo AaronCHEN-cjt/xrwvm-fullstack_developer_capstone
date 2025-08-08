@@ -19,6 +19,7 @@ urlpatterns = [
     path('register', views.registration, name='registration'),
 
     # path for dealer reviews view
+    path('get_dealers/', views.get_dealerships_default, name='get_dealers_default'),
     path(route='get_dealers', view=views.get_dealerships, name='get_dealers'),
     path(route='get_dealers/<str:state>', view=views.get_dealerships, name='get_dealers_by_state'),
     path(route='dealer/<int:dealer_id>', view=views.get_dealer_details, name='dealer_details'),
@@ -26,6 +27,7 @@ urlpatterns = [
     
     # path for add a review view
     path(route='add_review', view=views.add_review, name='add_review'),
+    
     
     # path for get cars
     path(route='get_cars', view=views.get_cars, name ='getcars'),
