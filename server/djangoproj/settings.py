@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ['localhost',
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://u2057587464-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
+    'https://u2057587464-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
     ]
 
 REST_FRAMEWORK = {
