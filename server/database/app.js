@@ -1,3 +1,5 @@
+/* jshint esversion: 8 */
+
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
@@ -7,6 +9,7 @@ const port = 3030;
 
 app.use(cors());
 app.use(require('body-parser').urlencoded({ extended: false }));
+
 
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
 const dealerships_data = JSON.parse(fs.readFileSync("dealerships.json", 'utf8'));
@@ -19,10 +22,10 @@ const Dealerships = require('./dealership');
 // Insert reviews and dealerships data
 try {
   Reviews.deleteMany({}).then(() => {
-    Reviews.insertMany(reviews_data['reviews']);
+    Reviews.insertMany(reviews_data.reviews);  // 修改为点表示法
   });
   Dealerships.deleteMany({}).then(() => {
-    Dealerships.insertMany(dealerships_data['dealerships']);
+    Dealerships.insertMany(dealerships_data.dealerships);  // 修改为点表示法
   });
 } catch (error) {
   console.error('Error inserting data into DB', error);
@@ -92,18 +95,18 @@ app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   const data = JSON.parse(req.body);
   try {
     const documents = await Reviews.find().sort({ id: -1 });
-    let new_id = documents[0]['id'] + 1;
+    let new_id = documents[0].id + 1;  // 修改为点表示法
 
     const review = new Reviews({
       "id": new_id,
-      "name": data['name'],
-      "dealership": data['dealership'],
-      "review": data['review'],
-      "purchase": data['purchase'],
-      "purchase_date": data['purchase_date'],
-      "car_make": data['car_make'],
-      "car_model": data['car_model'],
-      "car_year": data['car_year'],
+      "name": data.name,
+      "dealership": data.dealership,
+      "review": data.review,
+      "purchase": data.purchase,
+      "purchase_date": data.purchase_date,
+      "car_make": data.car_make,
+      "car_model": data.car_model,
+      "car_year": data.car_year,
     });
 
     const savedReview = await review.save();
